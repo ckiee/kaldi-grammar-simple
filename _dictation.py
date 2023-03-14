@@ -36,7 +36,7 @@ class DictationCommandRule(MappingRule):
 grammar.add_rule(DictationCommandRule())
 
 # ADD PERSONAL SINGLE-WORD TERMS HERE...
-personal_uni_terms = "Kaldi backend parsing cache optimize software"
+personal_uni_terms = "Kaldi backend parsing cache optimize software nix"
 # ADD PERSONAL MULTIPLE-WORD TERMS HERE...
 personal_multi_terms = ["left and right", "up and down"]
 

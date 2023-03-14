@@ -110,6 +110,7 @@ modifierMap = {
     "control": "c",
     "shift": "s",
     "super": "w",
+    "salt": "w",
 }
 
 # Modifiers for the press-command, if only the modifier is pressed.
@@ -119,6 +120,7 @@ singleModifierMap = {
     "control": "ctrl",
     "shift": "shift",
     "super": "win",
+    "salt": "win",
 }
 
 letterMap = {
@@ -306,6 +308,8 @@ grammarCfg.cmd.map = Item(
         "<char>": Text("%(char)s"),
         "<modifierSingle> <letters>": Key("%(modifierSingle)s:down") + Text("%(letters)s") + Key("%(modifierSingle)s:up"),
         "<modifierSingle> <char>": Key("%(modifierSingle)s:down") + Text("%(char)s") + Key("%(modifierSingle)s:up"),
+        "<modifierSingle> <num>": Key("%(modifierSingle)s:down") + Text("%(num)d") + Key("%(modifierSingle)s:up"),
+        "(super|salt) slap": Key("super:down, enter, super:up"),
 
         'langle [<n>]': Key('langle:%(n)d'),
         'lace [<n>]':   Key('lbrace:%(n)d'),
@@ -336,7 +340,7 @@ grammarCfg.cmd.map = Item(
 
         'lope [<n>]':  Key('c-left:%(n)d'),
         '(yope|rope) [<n>]':  Key('c-right:%(n)d'),
-        #'(hill scratch|hatch) [<n>]': Key('c-backspace:%(n)d'),
+        '(hill scratch|hatch) [<n>]': Key('c-backspace:%(n)d'),
 
         'hexadecimal': Text("0x"),
         'suspend': Key('c-z'),
