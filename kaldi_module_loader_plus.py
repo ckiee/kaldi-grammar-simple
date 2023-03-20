@@ -75,7 +75,7 @@ def load_sleep_wake_grammar(initial_awake):
 
     class SleepRule(MappingRule):
         mapping = {
-            "start listening":  Function(wake) + Function(lambda: get_engine().start_saving_adaptation_state()),
+            "please start listening":  Function(wake) + Function(lambda: get_engine().start_saving_adaptation_state()),
             "stop listening":   Function(lambda: get_engine().stop_saving_adaptation_state()) + Function(sleep),
             "halt listening":   Function(lambda: get_engine().stop_saving_adaptation_state()) + Function(sleep),
         }
@@ -151,7 +151,7 @@ def main(args):
     directory.load()
 
     # Start the engine's main recognition loop
-    engine.mimic("start listening")
+    engine.mimic("please start listening")
     engine.prepare_for_recognition()
     try:
         # Loop forever
