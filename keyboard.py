@@ -110,7 +110,7 @@ modifierMap = {
     "control": "c",
     "shift": "s",
     "super": "w",
-    "salt": "w",
+    "salty": "w",
 }
 
 # Modifiers for the press-command, if only the modifier is pressed.
@@ -120,7 +120,7 @@ singleModifierMap = {
     "control": "ctrl",
     "shift": "shift",
     "super": "win",
-    "salt": "win",
+    "salty": "win",
 }
 
 letterMap = {
@@ -136,16 +136,16 @@ letterMap = {
     "(juliet|julia) ": "j",
     "(kilo) ": "k",
     "(lima|line) ": "l",
-    "(mike) ": "m",
+    "(mike|mom) ": "m",
     "(november|noy) ": "n",
     "(Oscar|osh) ": "o",
-    "(papa|poppa) ": "p",
+    "(papa|poppa|pike) ": "p",
     "(quebec|queen) ": "q",
     "(romeo) ": "r",
-    "(sierra) ": "s",
+    "(sierra|sinatra) ": "s",
     "(tango|tarnish) ": "t",
     "(uniform) ": "u",
-    "(victor) ": "v",
+    "(victor|violet) ": "v",
     "(whiskey|whisker) ": "w",
     "(x-ray) ": "x",
     "(yankee) ": "y",
@@ -264,9 +264,10 @@ grammarCfg.cmd.map = Item(
         "space [<n>]": release + Key("space:%(n)d"),
         "(enter|slap|slop) [<n>]": release + Key("enter:%(n)d"),
         "tab [<n>]": Key("tab:%(n)d"),
+        "snort [<n>]": Key("s-tab:%(n)d"),
         ###"delete [<n>]": Key("del/3:%(n)d"),
         "delete [this] line": Key("home, s-end, del"),  # @IgnorePep8
-        "backspace [<n>]": release + Key("backspace:%(n)d"),
+        # "backspace [<n>]": release + Key("backspace:%(n)d"),
         "application key": release + Key("apps/3"),
         "win key": release + Key("win/3"),
         #"paste [that]": Function(paste_command),
@@ -309,7 +310,11 @@ grammarCfg.cmd.map = Item(
         "<modifierSingle> <letters>": Key("%(modifierSingle)s:down") + Text("%(letters)s") + Key("%(modifierSingle)s:up"),
         "<modifierSingle> <char>": Key("%(modifierSingle)s:down") + Text("%(char)s") + Key("%(modifierSingle)s:up"),
         "<modifierSingle> <num>": Key("%(modifierSingle)s:down") + Text("%(num)d") + Key("%(modifierSingle)s:up"),
-        "(super|salt) slap": Key("super:down, enter, super:up"),
+        "(super|salty) slap": Key("super:down, enter, super:up"),
+        "(super|salty) down": Key("super:down, down, super:up"),
+        "(super|salty) up": Key("super:down, up, super:up"),
+        "(super|salty) left": Key("super:down, left, super:up"),
+        "(super|salty) right": Key("super:down, right, super:up"),
 
         'langle [<n>]': Key('langle:%(n)d'),
         'lace [<n>]':   Key('lbrace:%(n)d'),
