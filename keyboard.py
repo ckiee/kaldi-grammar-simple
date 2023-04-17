@@ -50,10 +50,10 @@ def cancel_and_sleep(text=None, text2=None):
 specialCharMap = {
     "(bar|vertical bar|pipe)": "|",
     "(dash|minus|hyphen)": "-",
-    "dit": ".",
+    "(dit|dot)": ".",
     "comma": ",",
     "backslash": "\\",
-    "underscore": "_",
+    "(underscore | score)": "_",
     "(star|asterisk)": "*",
     "colon": ":",
     "(semicolon|semi colon)": ";",
@@ -64,7 +64,7 @@ specialCharMap = {
     "hash": "#",
     "dollar": "$",
     "percent": "%",
-    "ampersand": "&",
+    "(ampersand|and)": "&",
     "slash": "/",
     "equal": "=",
     "plus": "+",
@@ -85,7 +85,7 @@ specialCharMap = {
     # 'colon': Key('colon'),
     # 'comma': Key('comma'),
     # 'dollar': Key('dollar'),
-    # #'(dot|period)': Key('dot'),
+    #'(dot|period)': Key('dot'),
     # 'double quote': Key('dquote'),
     # 'equal': Key('equal'),
     # 'bang': Key('exclamation'),
@@ -316,7 +316,7 @@ grammarCfg.cmd.map = Item(
         "(super|salty) left": Key("super:down, left, super:up"),
         "(super|salty) right": Key("super:down, right, super:up"),
 
-        'langle [<n>]': Key('langle:%(n)d'),
+        '(langle|less than) [<n>]': Key('langle:%(n)d'),
         'lace [<n>]':   Key('lbrace:%(n)d'),
         '(lack|lair) [<n>]':   Key('lbracket:%(n)d'),
         #'(laip|len) [<n>]':   Key('lparen:%(n)d'),
@@ -350,7 +350,9 @@ grammarCfg.cmd.map = Item(
         'hexadecimal': Text("0x"),
         'suspend': Key('c-z'),
 
-        'word <text>': Function(handle_word),
+        'word <text>': Function(lambda t: handle_word(t, False)),
+        'whip word <text>': Function(lambda t: handle_word(t, True)),
+
         'number <num>': Text("%(num)d"),
         'change <text> to <text2>': Key("home, slash") + Text("%(text)s") + Key("enter, c, e") + Text("%(text2)s") + Key("escape"),
 

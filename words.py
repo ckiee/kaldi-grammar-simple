@@ -17,7 +17,9 @@ import tformat
 
 lastFormatRuleLength = 0
 lastFormatRuleWords = []
-def handle_word(text):
+def handle_word(text, capitalize):
+    if capitalize:
+        text = text.capitalize()
     words = str(text).split()
     print("word ({})".format(words))
     if len(words) > 0:
